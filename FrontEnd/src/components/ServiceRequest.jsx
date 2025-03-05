@@ -24,7 +24,7 @@ const ServiceRequest = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 mt-15">
       <h2 className="text-3xl font-bold text-center mb-6">Request Service</h2>
 
       <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
