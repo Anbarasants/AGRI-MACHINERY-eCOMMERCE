@@ -1,120 +1,61 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
+import { FaBars, FaTimes, FaShoppingCart, FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     return (
-        <nav className="bg-green-700 p-4 fixed w-full top-0 shadow-md z-50">
-            <div className="container mx-auto flex justify-between items-center relative">
-                {/* Brand Name */}
-                <Link to="/" className="text-white text-2xl font-bold tracking-wide">
-                    ARUL JAYAM AGRI MACHINERY
+        <nav className="bg-white shadow-md fixed w-full top-0 z-50">
+            <div className="container mx-auto flex justify-between items-center p-4">
+                {/* Logo */}
+                <Link to="/" className="text-green-600 text-2xl font-bold">
+                    Arul Jayam <span className="text-green-600">Agri Machinery</span>
                 </Link>
 
-                {/* Hamburger Menu for Mobile */}
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="text-white focus:outline-none md:hidden"
-                    aria-label="Toggle Menu"
-                >
-                    {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                </button>
-
-                {/* Navigation Links */}
+                {/* Desktop Menu */}
                 <div className="hidden md:flex space-x-6">
-                    <Link to="/" className="text-white hover:text-yellow-300 transition">Home</Link>
-                    <Link to="/about" className="text-white hover:text-yellow-300 transition">About</Link>
-                    <Link to="/product" className="text-white hover:text-yellow-300 transition">Poducts</Link>
-                    
-                    {/* Products Dropdown */}
-                    {/* <div className="relative">
-                        <button
-                            onClick={() => setDropdownOpen(!dropdownOpen)}
-                            className="text-white hover:text-yellow-300 flex items-center transition"
-                        >
-                            Products <FaChevronDown className="ml-1" />
-                        </button>
-                        {dropdownOpen && (
-                            <div className="absolute top-full mt-2 bg-white text-black shadow-lg rounded-lg w-48">
-                                <Link to="/tractors" className="block px-4 py-2 hover:bg-gray-200">Tractors</Link>
-                                <Link to="/harvesters" className="block px-4 py-2 hover:bg-gray-200">Harvesters</Link>
-                                <Link to="/ploughs" className="block px-4 py-2 hover:bg-gray-200">Ploughs</Link>
-                                <Link to="/sprayers" className="block px-4 py-2 hover:bg-gray-200">Sprayers</Link>
-                            </div>
-                        )}
-                    </div> */}
+                    <Link to="/" className="text-gray-700 hover:text-green-600">Home</Link>
+                    <Link to="/about" className="text-gray-700 hover:text-green-600">About</Link>
+                    <Link to="/services" className="text-gray-700 hover:text-green-600">Services</Link>
+                    <Link to="/products" className="text-gray-700 hover:text-green-600">Products</Link>
+                    <Link to="/contact" className="text-gray-700 hover:text-green-600">Contact</Link>
+                </div>
 
-                    <Link to="/services" className="text-white hover:text-gray-200">Services</Link>
-                    <Link to="/blogs" className="text-white hover:text-gray-200">Blog</Link>
-                    <Link to="/contact" className="text-white hover:text-yellow-300 transition">Contact</Link>
-                    <Link to="/login" className="bg-yellow-400 text-green-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition">
-                        Login
+                {/* Icons */}
+                <div className="hidden md:flex space-x-4">
+                    <Link to="/login" className="text-gray-700 hover:text-green-600 flex items-center space-x-1">
+                        <FaUser size={20} />
+                        <span>Login</span>
+                    </Link>
+                    <Link to="/cart" className="text-gray-700 hover:text-green-600">
+                        <FaShoppingCart size={22} />
                     </Link>
                 </div>
 
-                {/* Mobile Dropdown Menu */}
-                {isOpen && (
-                    <div className="absolute top-14 left-0 w-full bg-green-800 text-white md:hidden shadow-lg">
-                        <Link
-                            to="/"
-                            className="block py-3 px-6 hover:bg-green-900"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            to="/about"
-                            className="block py-3 px-6 hover:bg-green-900"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            About
-                        </Link>
-
-                        {/* Products Dropdown in Mobile */}
-                        <div className="border-t border-green-700">
-                            <button
-                                onClick={() => setDropdownOpen(!dropdownOpen)}
-                                className="w-full text-left py-3 px-6 flex justify-between hover:bg-green-900"
-                            >
-                                Products <FaChevronDown />
-                            </button>
-                            {dropdownOpen && (
-                                <div className="bg-green-900 text-white">
-                                    <Link to="/tractors" className="block py-2 px-8 hover:bg-green-700">Tractors</Link>
-                                    <Link to="/harvesters" className="block py-2 px-8 hover:bg-green-700">Harvesters</Link>
-                                    <Link to="/ploughs" className="block py-2 px-8 hover:bg-green-700">Ploughs</Link>
-                                    <Link to="/sprayers" className="block py-2 px-8 hover:bg-green-700">Sprayers</Link>
-                                </div>
-                            )}
-                        </div>
-
-                        <Link
-                            to="/services"
-                            className="block py-3 px-6 hover:bg-green-900"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Services
-                        </Link>
-                        <Link
-                            to="/contact"
-                            className="block py-3 px-6 hover:bg-green-900"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Contact
-                        </Link>
-                        <Link
-                            to="/login"
-                            className="block py-3 px-6 bg-yellow-500 text-center text-green-800 font-semibold hover:bg-yellow-600"
-                            onClick={() => setIsOpen(false)}
-                        >
-                            Login
-                        </Link>
-                    </div>
-                )}
+                {/* Mobile Menu Button */}
+                <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-gray-700">
+                    {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                </button>
             </div>
+
+            {/* Mobile Menu */}
+            {isOpen && (
+                <div className="md:hidden bg-white shadow-md w-full absolute left-0 top-16 p-4 flex flex-col space-y-4">
+                    <Link to="/" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Home</Link>
+                    <Link to="/about" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>About</Link>
+                    <Link to="/services" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Services</Link>
+                    <Link to="/products" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Products</Link>
+                    <Link to="/contact" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Contact</Link>
+                    <Link to="/login" className="text-gray-700 hover:text-green-600 flex items-center space-x-1" onClick={() => setIsOpen(false)}>
+                        <FaUser size={20} />
+                        <span>Login</span>
+                    </Link>
+                    <Link to="/cart" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>
+                        <FaShoppingCart size={22} />
+                    </Link>
+                </div>
+            )}
         </nav>
     );
 };

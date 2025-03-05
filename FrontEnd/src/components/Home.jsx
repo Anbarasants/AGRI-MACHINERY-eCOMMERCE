@@ -8,7 +8,7 @@ const Home = () => (
       className="relative h-screen flex items-center justify-center text-white text-center bg-cover bg-center" 
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="relative z-10 p-6 bg-black bg-opacity-50 rounded-lg">
+      <div className="relative z-10 p-6  bg-opacity-50 rounded-lg">
         <img src="https://d171jb2uwdr9zn.cloudfront.net/unsafe/0x200/middle/smart/filters:strip_icc():strip_exif():format(webp)/https://ukno.in/uploads/images/ARUL_JAYAM_AGRI_MACHINERY_featured_1127299451.jpg" 
           alt="Logo" className="mx-auto mb-4 w-32" />
         <h2 className="text-4xl font-bold">ARUL JAYAM AGRI MACHINERY</h2>
