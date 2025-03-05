@@ -24,7 +24,7 @@ const Home = () => (
     </div>
 
     {/* Product Categories */}
-    <section className="py-12 px-6">
+    <section className="py-12 px-6 mt-15">
       <h2 className="text-3xl font-bold text-center text-gray-800">Product Categories</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-6">
         {["Tractors", "Harvesters", "Ploughs", "Sprayers"].map((category, index) => (

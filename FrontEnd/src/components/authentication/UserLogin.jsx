@@ -5,7 +5,7 @@ const AuthPage = () => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 mt-15">
       <div className="w-full max-w-md p-6 bg-white rounded-2xl shadow-md">
         <h2 className="text-2xl font-bold text-center text-green-700 mb-6">
           {isSignUp ? "Create an Account" : "Welcome Back"}

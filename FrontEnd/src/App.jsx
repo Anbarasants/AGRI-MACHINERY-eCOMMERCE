@@ -9,6 +9,9 @@ import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
 import Services from './components/Services';
 import ServiceRequest from './components/ServiceRequest';
+import BlogList from './components/BlogList';
+import BlogDetails from './components/BlogDetails';
+
 
 function App() {
     return (
@@ -18,12 +21,14 @@ function App() {
 
                 <Route path="/login" element={<Login/>} />
                 <Route path="/" element={<Home />} />
-                <Route path="/" element={<ProductList />} />
+                <Route path="/product" element={<ProductList />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<ContactForm />} /> 
                 <Route path="/services" element={<Services />} />
                 <Route path="/service-request" element={<ServiceRequest />} />
+                <Route path="/blogs" element={<BlogList />} />
+                <Route path="/blogs/:id" element={<BlogDetails />} />
             </Routes>
         </BrowserRouter>
     );

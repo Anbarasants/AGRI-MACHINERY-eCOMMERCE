@@ -20,7 +20,7 @@ const ContactForm = () => {
     };
 
     return (
-        <section id="contact" className="py-12 bg-white">
+        <section id="contact" className="py-12 bg-white mt-15">
             <div className="container mx-auto px-4">
                 <h2 className="text-3xl font-bold text-center text-green-600 mb-8">
                     Contact Us
