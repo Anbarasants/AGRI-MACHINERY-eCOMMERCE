@@ -7,7 +7,8 @@ import ContactForm from './components/Contact';
 import Login from './components/authentication/UserLogin';
 import ProductList from './components/ProductList';
 import ProductDetails from './components/ProductDetails';
-
+import Services from './components/Services';
+import ServiceRequest from './components/ServiceRequest';
 
 function App() {
     return (

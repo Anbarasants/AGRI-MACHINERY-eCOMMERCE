@@ -47,7 +47,7 @@ const Navbar = () => {
                         )}
                     </div> */}
 
-                    <Link to="/services" className="text-white hover:text-yellow-300 transition">Services</Link>
+                    <Link to="/services" className="text-white hover:text-gray-200">Services</Link>
                     <Link to="/contact" className="text-white hover:text-yellow-300 transition">Contact</Link>
                     <Link to="/login" className="bg-yellow-400 text-green-800 px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition">
                         Login
