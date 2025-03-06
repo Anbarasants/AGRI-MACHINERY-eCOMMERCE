@@ -1,21 +1,29 @@
-const express=require('express');
-const mongoose=require('mongoose')
-const cors=require('cors');
-const dotenv=require('dotenv');
-dotenv.config()
-const app=express();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv'); // Require dotenv to load environment variables
+
+const userRoutes = require('./routes/UserRoute');
+
+dotenv.config(); // Load environment variables
+
+const app = express();
+
+// Middleware
 app.use(express.json());
+app.use(cors());
 
-const PORT = process.env.PORT || 5001;
-console.log(process.env.MONGO_URI)
-mongoose.connect(process.env.MONGO_URI,{})
-    .then(()=>console.log("MongoDB connected"))
-    .catch((err)=>console.error("MongoDB Connection Error: ",err));
+// Routes
+app.use('/api/users', userRoutes);
 
-    app.get("/",(req,res)=>{
-        res.send("Agri app");
-    });
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log("Connected to MongoDB"))
+.catch((err) => console.log("MongoDB Connection Error:", err));
 
-    app.listen(PORT,()=>{
-        console.log(`Server is running on port ${PORT}`);
-    });
+// Start Server
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

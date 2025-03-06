@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaShoppingCart, FaUser } from 'react-icons/fa';
+import { FaBars, FaTimes, FaShoppingCart, FaUser, FaChevronDown } from 'react-icons/fa';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +20,22 @@ const Navbar = () => {
                     <Link to="/services" className="text-gray-700 hover:text-green-600">Services</Link>
                     <Link to="/products" className="text-gray-700 hover:text-green-600">Products</Link>
                     <Link to="/contact" className="text-gray-700 hover:text-green-600">Contact</Link>
+                </div>
+
+                {/* Login Dropdown */}
+                <div className="relative group hidden md:block">
+                    <button className="text-gray-700 flex items-center space-x-2">
+                        <FaUser size={22} />
+                        <FaChevronDown size={12} />
+                    </button>
+                    <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-lg w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                        <Link to="/profile" className="block px-4 py-2 hover:bg-gray-200">My Profile</Link>
+                        <Link to="/orders" className="block px-4 py-2 hover:bg-gray-200">Orders</Link>
+                        <Link to="/wishlist" className="block px-4 py-2 hover:bg-gray-200">Wishlist</Link>
+                        <Link to="/rewards" className="block px-4 py-2 hover:bg-gray-200">Rewards</Link>
+                        <Link to="/giftcards" className="block px-4 py-2 hover:bg-gray-200">Gift Cards</Link>
+                        <Link to="/login" className="block px-4 py-2 text-blue-600 hover:underline">Login / Sign Up</Link>
+                    </div>
                 </div>
 
                 {/* Icons */}
