@@ -5,10 +5,10 @@ import Home from './components/Home'; // Ensure this file exists
 import About from './components/About';
 import ContactForm from './components/Contact';
 import Login from './components/authentication/UserLogin';
-import ProductList from './components/ProductList';
-import ProductDetails from './components/ProductDetails';
-import Services from './components/Services';
-import ServiceRequest from './components/ServiceRequest';
+import ProductList from './components/Product/ProductList';
+import ProductDetails from './components/Product/ProductDetails';
+import Services from './components/service/Services';
+import ServiceRequest from './components/service/ServiceRequest';
 import BlogList from './components/BlogList';
 import BlogDetails from './components/BlogDetails';
 
