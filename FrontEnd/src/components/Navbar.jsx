@@ -1,79 +1,135 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaShoppingCart, FaUser, FaChevronDown } from 'react-icons/fa';
+import React, { useState } from "react";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaBars,
+  FaSearch,
+  FaMapMarkerAlt,
+  FaCheckCircle,
+  FaUser,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+const TopNavbar = () => {
+  return (
+    <div className="bg-white p-3 border-b shadow-sm flex justify-between items-center">
+      <div className="flex items-center space-x-3">
+        <img src="./src/assets/logo.jpg" alt="Company Logo" className="h-20" />
+        <div>
+          <h2 className="font-bold">Arul Jayam Agri Machinery</h2>
+          <p className="text-sm text-gray-600 flex items-center">
+            <FaMapMarkerAlt className="mr-1 text-green-600 h-[10px]" /> Thirumalai Nagar, Kallakurichi Main Road, Mayilambarai Sankarapuram, Viluppuram, Tamil Nadu 606401
+          </p>
+          <p className="text-sm text-gray-600 flex items-center">
+            <FaCheckCircle className="mr-1 text-green-600" /> GST No.:{" "}
+            <span className="font-bold">24AASFM1611K1Z8</span>
+          </p>
+        </div>
+      </div>
+      <div className="hidden md:flex space-x-4 items-center">
+        <button className="bg-green-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
+          <FaEnvelope /> <span>Send Email</span>
+        </button>
+        <div className="border p-2 rounded-lg flex items-center space-x-2">
+          <FaPhone className="text-green-700" />
+          <span className="text-sm font-semibold">Call 08048265622</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const MainNavbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [authMenuOpen, setAuthMenuOpen] = useState(false);
+
+  return (
+    <nav className="bg-gray-900 text-white p-3">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <FaBars
+            className="md:hidden cursor-pointer"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          />
+          <span className="font-bold text-lg">Arul Jayam Agri Machinery</span>
+        </div>
+
+        <div className="hidden md:flex space-x-6">
+          <a href="#" className="hover:text-yellow-400">
+            Company Brief
+          </a>
+          <a href="#" className="hover:text-yellow-400">
+            Contact Us
+          </a>
+        </div>
+
+        <div className="flex items-center space-x-4 relative">
+          <div className="hidden md:flex items-center space-x-2 bg-gray-800 p-2 rounded-lg w-1/3">
+            <input
+              type="text"
+              placeholder="Search Products/Services"
+              className="bg-transparent focus:outline-none text-sm w-full"
+            />
+            <FaSearch className="text-yellow-400" />
+          </div>
+          <div className="relative">
+          <button
+          className="hidden md:flex bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg flex items-center space-x-2 "
+          onClick={() => (window.location.href = "/login")}
+          >
+           <FaUser /> <span>Login/Signup</span>
+          </button>
+
+          </div>
+        </div>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-gray-800 text-white p-4 flex flex-col space-y-3">
+          <a href="#" className="hover:text-yellow-400">
+            Our Product Range
+          </a>
+          <a href="#" className="hover:text-yellow-400">
+            Company Brief
+          </a>
+          <a href="#" className="hover:text-yellow-400">
+            Contact Us
+          </a>
+          <div className="flex items-center bg-gray-700 p-2 rounded-lg">
+            <input
+              type="text"
+              placeholder="Search Products/Services"
+              className="bg-transparent focus:outline-none text-sm w-full"
+            />
+            <FaSearch className="text-yellow-400" />
+          </div>
+          <button
+  className="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg flex items-center space-x-2"
+  onClick={() => (window.location.href = "/login")}
+>
+  <FaUser /> <span>Login</span>
+</button>
+
+          <button className="bg-green-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
+            <FaEnvelope /> <span>Send Email</span>
+          </button>
+          <div className="border p-2 rounded-lg flex items-center space-x-2">
+            <FaPhone className="text-green-700" />
+            <span className="text-sm font-semibold">Call 08048265622</span>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-        <nav className="bg-white shadow-md fixed w-full top-0 z-50">
-            <div className="container mx-auto flex justify-between items-center p-4">
-                {/* Logo */}
-                <Link to="/" className="text-green-600 text-2xl font-bold">
-                    Arul Jayam <span className="text-green-600">Agri Machinery</span>
-                </Link>
-
-                {/* Desktop Menu */}
-                <div className="hidden md:flex space-x-6">
-                    <Link to="/" className="text-gray-700 hover:text-green-600">Home</Link>
-                    <Link to="/about" className="text-gray-700 hover:text-green-600">About</Link>
-                    <Link to="/services" className="text-gray-700 hover:text-green-600">Services</Link>
-                    <Link to="/products" className="text-gray-700 hover:text-green-600">Products</Link>
-                    <Link to="/contact" className="text-gray-700 hover:text-green-600">Contact</Link>
-                </div>
-
-                {/* Login Dropdown */}
-                <div className="relative group hidden md:block">
-                    <button className="text-gray-700 flex items-center space-x-2">
-                        <FaUser size={22} />
-                        <FaChevronDown size={12} />
-                    </button>
-                    <div className="absolute left-0 mt-2 bg-white text-black shadow-lg rounded-lg w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                        <Link to="/profile" className="block px-4 py-2 hover:bg-gray-200">My Profile</Link>
-                        <Link to="/orders" className="block px-4 py-2 hover:bg-gray-200">Orders</Link>
-                        <Link to="/wishlist" className="block px-4 py-2 hover:bg-gray-200">Wishlist</Link>
-                        <Link to="/rewards" className="block px-4 py-2 hover:bg-gray-200">Rewards</Link>
-                        <Link to="/giftcards" className="block px-4 py-2 hover:bg-gray-200">Gift Cards</Link>
-                        <Link to="/login" className="block px-4 py-2 text-blue-600 hover:underline">Login / Sign Up</Link>
-                    </div>
-                </div>
-
-                {/* Icons */}
-                <div className="hidden md:flex space-x-4">
-                    <Link to="/login" className="text-gray-700 hover:text-green-600 flex items-center space-x-1">
-                        <FaUser size={20} />
-                        <span>Login</span>
-                    </Link>
-                    <Link to="/cart" className="text-gray-700 hover:text-green-600">
-                        <FaShoppingCart size={22} />
-                    </Link>
-                </div>
-
-                {/* Mobile Menu Button */}
-                <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-gray-700">
-                    {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                </button>
-            </div>
-
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div className="md:hidden bg-white shadow-md w-full absolute left-0 top-16 p-4 flex flex-col space-y-4">
-                    <Link to="/" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Home</Link>
-                    <Link to="/about" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>About</Link>
-                    <Link to="/services" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Services</Link>
-                    <Link to="/products" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Products</Link>
-                    <Link to="/contact" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>Contact</Link>
-                    <Link to="/login" className="text-gray-700 hover:text-green-600 flex items-center space-x-1" onClick={() => setIsOpen(false)}>
-                        <FaUser size={20} />
-                        <span>Login</span>
-                    </Link>
-                    <Link to="/cart" className="text-gray-700 hover:text-green-600" onClick={() => setIsOpen(false)}>
-                        <FaShoppingCart size={22} />
-                    </Link>
-                </div>
-            )}
-        </nav>
-    );
+  return (
+    <>
+      <TopNavbar />
+      <MainNavbar />
+    </>
+  );
 };
 
 export default Navbar;

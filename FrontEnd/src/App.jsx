@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './components/Home'; // Ensure this file exists
+import MobileNav from './components/MobileNav'
+import Home from './components/Home';   
 import About from './components/About';
 import ContactForm from './components/Contact';
-import Login from './components/authentication/UserLogin';
-import ProductList from './components/ProductList';
-import ProductDetails from './components/ProductDetails';
-import Services from './components/Services';
-import ServiceRequest from './components/ServiceRequest';
-import BlogList from './components/BlogList';
-import BlogDetails from './components/BlogDetails';
+import Login from './components/authentication/UserSignUp ';
+import ProductList from './components/Product/ProductList';
+import ProductDetails from './components/Product/ProductDetails';
+import Services from './components/service/Services';
+import ServiceRequest from './components/service/ServiceRequest';
+// import BusinessSection from './components/BusinessSection';
 
 
 function App() {
@@ -27,9 +27,9 @@ function App() {
                 <Route path="/contact" element={<ContactForm />} /> 
                 <Route path="/services" element={<Services />} />
                 <Route path="/service-request" element={<ServiceRequest />} />
-                <Route path="/blogs" element={<BlogList />} />
-                <Route path="/blogs/:id" element={<BlogDetails />} />
+                
             </Routes>
+            <MobileNav/>
         </BrowserRouter>
     );
 }
