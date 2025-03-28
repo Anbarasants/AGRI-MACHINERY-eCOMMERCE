@@ -5,8 +5,6 @@ require("dotenv").config(); // Load .env variables
 
 const authRoutes = require("./routes/auth");
 
-const authRoutes = require("./routes/auth");
-
 dotenv.config();
 const app = express();
 
