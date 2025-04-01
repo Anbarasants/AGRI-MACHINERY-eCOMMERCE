@@ -24,7 +24,7 @@ const UserAuth = () => {
       const response = await axios.post(url, formData);
       alert(response.data.message);
       if (response.data.success) {
-        navigate("/dashboard"); // Redirect after successful login/signup
+        navigate("/"); // Redirect after successful login/signup
       }
     } catch (error) {
       alert(error.response?.data?.message || "Error occurred");

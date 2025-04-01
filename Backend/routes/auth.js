@@ -26,9 +26,33 @@ router.post("/signup", async (req, res) => {
     const newUser = new User({ name, phone, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ message: "Signup successful!" });
+    res.status(201).json({ message: "Signup successful!", success: true });
   } catch (error) {
     console.error("Signup error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// **Login Route (Fix for 404 error)**
+router.post("/login", async (req, res) => {
+  try {
+    const { phone, password } = req.body;
+
+    // Check if user exists
+    const user = await User.findOne({ phone });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    // Compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    res.status(200).json({ message: "Login successful!", success: true });
+  } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
