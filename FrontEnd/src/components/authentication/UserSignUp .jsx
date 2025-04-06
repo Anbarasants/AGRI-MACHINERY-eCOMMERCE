@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 const UserAuth = () => {
   const [formData, setFormData] = useState({
+    name: "",
     phone: "",
     password: "",
+    role: "user", // 👈 default role
   });
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
@@ -23,8 +25,16 @@ const UserAuth = () => {
     try {
       const response = await axios.post(url, formData);
       alert(response.data.message);
+
       if (response.data.success) {
-        navigate("/"); // Redirect after successful login/signup
+        const role = response.data.user?.role || formData.role;
+
+        // Redirect based on role
+        if (role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/user-dashboard");
+        }
       }
     } catch (error) {
       alert(error.response?.data?.message || "Error occurred");
@@ -49,9 +59,10 @@ const UserAuth = () => {
                 type="text"
                 name="name"
                 onChange={handleChange}
+                value={formData.name}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-green-300"
                 placeholder="Enter your name"
-                required={!isLogin}
+                required
               />
             </div>
           )}
@@ -65,6 +76,7 @@ const UserAuth = () => {
               type="tel"
               name="phone"
               onChange={handleChange}
+              value={formData.phone}
               className="w-full px-3 py-2 border rounded-lg focus:ring-green-300"
               placeholder="Enter your phone number"
               pattern="[0-9]{10}"
@@ -81,11 +93,30 @@ const UserAuth = () => {
               type="password"
               name="password"
               onChange={handleChange}
+              value={formData.password}
               className="w-full px-3 py-2 border rounded-lg focus:ring-green-300"
               placeholder="Enter your password"
               required
             />
           </div>
+
+          {/* Role Selection - Only in Sign Up */}
+          {!isLogin && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Role
+              </label>
+              <select
+                name="role"
+                onChange={handleChange}
+                value={formData.role}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-green-300"
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          )}
 
           <button
             type="submit"
