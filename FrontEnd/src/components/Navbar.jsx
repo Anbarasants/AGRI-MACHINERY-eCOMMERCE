@@ -104,19 +104,10 @@ const MainNavbar = () => {
             <FaSearch className="text-yellow-400" />
           </div>
           <button
-  className="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg flex items-center space-x-2"
-  onClick={() => (window.location.href = "/login")}
->
-  <FaUser /> <span>Login</span>
-</button>
-
-          <button className="bg-green-700 text-white px-4 py-2 rounded-lg flex items-center space-x-2">
-            <FaEnvelope /> <span>Send Email</span>
+            className="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg flex items-center space-x-2"
+            onClick={() => (window.location.href = "/login")}>
+            <FaUser /> <span>Login</span>
           </button>
-          <div className="border p-2 rounded-lg flex items-center space-x-2">
-            <FaPhone className="text-green-700" />
-            <span className="text-sm font-semibold">Call 08048265622</span>
-          </div>
         </div>
       )}
     </nav>

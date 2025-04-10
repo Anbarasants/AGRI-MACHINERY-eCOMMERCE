@@ -1,6 +1,5 @@
 import React from "react";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
-
+import Carousel from "./Carousel";
 const businessInfo = [
   { label: "Nature of Business", value: "Trader - Wholesaler/Distributor" },
   { label: "Total Number of Employees", value: "26 to 50 People" },
@@ -127,9 +126,9 @@ const productList = [
 
 const HomePage = () => {
   return (
+    
     <div className="max-w-7xl mx-auto px-4 py-8">
-
-<div className="overflow-x-auto flex space-x-4 p-3 bg-gray-100 rounded-lg">
+      <div className="overflow-x-auto flex space-x-4 p-3 bg-gray-100 rounded-lg mb-0.5">
       {productList.map((item, index) => (
         <div
           key={index}
@@ -146,6 +145,7 @@ const HomePage = () => {
         </div>
       ))}
     </div>
+      <Carousel />
 
       {/* Header Section */}
       <section className="bg-white p-6 rounded-lg shadow-lg">
@@ -162,8 +162,8 @@ const HomePage = () => {
         <button className="mt-4 bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800">
           Contact Us
         </button>
-       
       </section>
+      
       
 
       {/* Product Grid */}
