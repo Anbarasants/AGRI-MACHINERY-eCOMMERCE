@@ -54,14 +54,7 @@ const MainNavbar = () => {
           <span className="font-bold text-lg">Arul Jayam Agri Machinery</span>
         </div>
 
-        <div className="hidden md:flex space-x-6">
-          <a href="#" className="hover:text-yellow-400">
-            Company Brief
-          </a>
-          <a href="#" className="hover:text-yellow-400">
-            Contact Us
-          </a>
-        </div>
+        
 
         <div className="flex items-center space-x-4 relative">
           <div className="hidden md:flex items-center space-x-2 bg-gray-800 p-2 rounded-lg w-1/3">
@@ -88,9 +81,6 @@ const MainNavbar = () => {
         <div className="md:hidden bg-gray-800 text-white p-4 flex flex-col space-y-3">
           <a href="#" className="hover:text-yellow-400">
             Our Product Range
-          </a>
-          <a href="#" className="hover:text-yellow-400">
-            Company Brief
           </a>
           <a href="#" className="hover:text-yellow-400">
             Contact Us

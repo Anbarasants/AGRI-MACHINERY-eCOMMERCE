@@ -23,73 +23,9 @@ const products = [
     price: "₹ 1,690/Piece",
     details: ["Capacity: 16L", "Material: PVC", "Brand: SHIVAM"],
   },
-  {
-    img: "/images/product3.png",
-    title: "Agriculture Battery Sprayer New Japanese...",
-    price: "₹ 1,810/Piece",
-    details: ["Capacity: 16L", "Power Source: Battery", "Working Pressure: 140 PSI"],
-  },
-  {
-    img: "/images/product4.png",
-    title: "AGRICULTURE SPRAY PUMP 12V16AH",
-    price: "₹ 1,790/Piece",
-    details: ["Capacity: 16 Litre", "Usage/Application: Agriculture", "Pressure: 120 PSI"],
-  },
-  {
-    img: "/images/product5.png",
-    title: "Battery Spray Pump SISA-02",
-    price: "₹ 1,990/Piece",
-    details: ["Capacity: 16L", "Power Source: Battery", "Brand: SISA"],
-  },
 ];
 
 
-const product = [
-  {
-    id: 1,
-    name: "Agriculture Battery Sprayer Double Motor",
-    price: "₹ 1,790/Piece",
-    capacity: "16L",
-    power: "Battery",
-    brand: "SHIVAM",
-    image: "/images/product1.png",
-  },
-  {
-    id: 2,
-    name: "Battery Spray Pump 12V14AH",
-    price: "₹ 1,690/Piece",
-    capacity: "16L",
-    material: "PVC",
-    brand: "SHIVAM",
-    image: "/images/product2.png",
-  },
-  {
-    id: 3,
-    name: "Agriculture Battery Sprayer New Japanese",
-    price: "₹ 1,810/Piece",
-    capacity: "16L",
-    pressure: "140 PSI",
-    image: "/images/product3.png",
-  },
-  {
-    id: 4,
-    name: "Agriculture Spray Pump 12V16AH",
-    price: "₹ 1,790/Piece",
-    capacity: "16L",
-    application: "Agriculture",
-    pressure: "120 PSI",
-    image: "/images/product4.png",
-  },
-  {
-    id: 5,
-    name: "Battery Spray Pump SISA-02",
-    price: "₹ 1,990/Piece",
-    capacity: "16L",
-    power: "Battery",
-    brand: "SISA",
-    image: "/images/product5.png",
-  },
-];
 
 const productList = [
   {
@@ -126,25 +62,25 @@ const productList = [
 
 const HomePage = () => {
   return (
-    
+
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="overflow-x-auto flex space-x-4 p-3 bg-gray-100 rounded-lg mb-0.5">
-      {productList.map((item, index) => (
-        <div
-          key={index}
-          className="flex flex-col items-center space-y-2 min-w-[100px]"
-        >
-          <div className="bg-white p-2 shadow-md rounded-full w-16 h-16 flex items-center justify-center">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-12 h-12 object-contain"
-            />
+        {productList.map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center space-y-2 min-w-[100px]"
+          >
+            <div className="bg-white p-2 shadow-md rounded-full w-16 h-16 flex items-center justify-center">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-12 h-12 object-contain"
+              />
+            </div>
+            <p className="text-xs text-center font-semibold">{item.name}</p>
           </div>
-          <p className="text-xs text-center font-semibold">{item.name}</p>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
       <Carousel />
 
       {/* Header Section */}
@@ -163,55 +99,43 @@ const HomePage = () => {
           Contact Us
         </button>
       </section>
-      
-      
 
-      {/* Product Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-6">
-        {[...Array(4)].map((_, index) => (
-          <div key={index} className="border p-3 rounded-lg shadow-sm bg-white">
-            <img src="/images/product-placeholder.png" alt="Product" className="w-full h-32 object-cover rounded" />
-            <h3 className="font-semibold mt-2">Product Name {index + 1}</h3>
-            <p className="text-gray-600 text-sm">₹{(index + 1) * 500}/Piece</p>
-            <button className="bg-green-600 text-white px-4 py-2 mt-2 rounded-lg w-full">Get Quote</button>
-          </div>
-        ))}
-      </div>
 
-      
 
-      <div className="max-w-7xl mx-auto px-4 py-10">
+
       {/* Section Title */}
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold text-gray-800">Our Product Range</h2>
+
+      </div>
+      <div className="flex justify-between items-center">
+        <h3 className="text-xl font-semibold text-gray-700 mt-2">Agriculture Battery Sprayer</h3>
         <a href="#" className="text-green-600 hover:underline text-lg">
           View All categories &gt;
         </a>
       </div>
-
-      <h3 className="text-xl font-semibold text-gray-700 mt-2">Agriculture Battery Sprayer</h3>
-
       {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-6">
         {products.map((product, index) => (
-          <div key={index} className="border rounded-lg shadow-md bg-white p-4">
-            <img src={product.img} alt={product.title} className="w-full h-40 object-cover rounded" />
-            <h4 className="text-md font-semibold mt-2 text-gray-800">{product.title}</h4>
-            <p className="text-green-700 font-semibold mt-1">{product.price}</p>
-            <ul className="text-gray-600 text-sm mt-2">
+          <div key={index} className="border p-3 rounded-lg shadow-sm bg-white">
+            <img
+              src={product.img}
+              alt={product.title}
+              className="w-full h-32 object-cover rounded"
+            />
+            <h3 className="font-semibold mt-2 text-sm">{product.title}</h3>
+            <p className="text-gray-600 text-sm">{product.price}</p>
+            <ul className="text-xs text-gray-500 mt-1 list-disc list-inside">
               {product.details.map((detail, i) => (
                 <li key={i}>{detail}</li>
               ))}
             </ul>
-            <button className="mt-4 w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800">
+            <button className="bg-green-600 text-white px-4 py-2 mt-2 rounded-lg w-full">
               Get Quote
             </button>
           </div>
         ))}
       </div>
-    </div>
-
-      
     </div>
   );
 };

@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 const UserAuth = () => {
   const [formData, setFormData] = useState({
+    name: "",
     phone: "",
     password: "",
   });
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -16,18 +18,45 @@ const UserAuth = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    
+    // Check for admin login
+    if (isLogin && formData.phone == "0123456789" && formData.password === "Admin@123") {
+      // Admin login
+      localStorage.setItem("adminToken", "admin-logged-in");
+      localStorage.setItem("userRole", "admin");
+      localStorage.setItem("userData", JSON.stringify({
+        name: "Admin",
+        phone: "admin123@gmail.com",
+        role: "admin"
+      }));
+      console.log("entered");
+      navigate("/admin/dashboard");
+      setIsLoading(false);
+      return;
+    }
+
     const url = isLogin
-      ? "http://localhost:5000/api/users/login"
-      : "http://localhost:5000/api/users/signup";
+      ? "/api/users/login"
+      : "/api/users/signup";
 
     try {
       const response = await axios.post(url, formData);
-      alert(response.data.message);
+      
       if (response.data.success) {
-        navigate("/dashboard"); // Redirect after successful login/signup
+        // Store user data
+        localStorage.setItem("userToken", response.data.token || "user-logged-in");
+        localStorage.setItem("userRole", "user");
+        localStorage.setItem("userData", JSON.stringify(response.data.user));
+        
+        navigate("/");
       }
+      
+      alert(response.data.message);
     } catch (error) {
       alert(error.response?.data?.message || "Error occurred");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,25 +78,27 @@ const UserAuth = () => {
                 type="text"
                 name="name"
                 onChange={handleChange}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-green-300"
+                value={formData.name}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-green-300 focus:border-green-500"
                 placeholder="Enter your name"
-                required={!isLogin}
+                required
               />
             </div>
           )}
 
-          {/* Phone Number */}
+          {/* Phone Number / Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Phone Number
+              {isLogin ? "Phone Number or Email" : "Phone Number"}
             </label>
             <input
-              type="tel"
+              type={isLogin ? "text" : "tel"}
               name="phone"
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-green-300"
-              placeholder="Enter your phone number"
-              pattern="[0-9]{10}"
+              value={formData.phone}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-green-300 focus:border-green-500"
+              placeholder={isLogin ? "Enter phone or email" : "Enter your phone number"}
+              pattern={!isLogin ? "[0-9]{10}" : undefined}
               required
             />
           </div>
@@ -81,7 +112,8 @@ const UserAuth = () => {
               type="password"
               name="password"
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-green-300"
+              value={formData.password}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-green-300 focus:border-green-500"
               placeholder="Enter your password"
               required
             />
@@ -89,9 +121,10 @@ const UserAuth = () => {
 
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700 transition"
+            disabled={isLoading}
+            className="w-full px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLogin ? "Login" : "Sign Up"}
+            {isLoading ? "Loading..." : (isLogin ? "Login" : "Sign Up")}
           </button>
         </form>
 
@@ -129,4 +162,4 @@ const UserAuth = () => {
   );
 };
 
-export default UserAuth;
+export default UserAuth; 
